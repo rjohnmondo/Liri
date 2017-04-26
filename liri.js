@@ -1,8 +1,8 @@
 var spotify= require('spotify');
 var request= require('request');
 var twitter= require('twitter');
-var fs= require('fs');
 var twitterKeys = require('./keys.js');
+var fs= require('fs');
 
 
 // store the input arguments
@@ -14,8 +14,6 @@ inputArguments = inputArguments.slice(2);
 var command = inputArguments[0];
 var yourRequest= inputArguments.slice(1);
 
-// logs input history
-// writeRecord(command, yourRequest);
 // take in args for eval
 executeCommand(command, yourRequest);
 
@@ -41,8 +39,10 @@ function executeCommand(command, yourRequest){
 	    	break;
 	    	// if nothing matches
 	    default:
-	        console.log("Ooops! Something went wrong!");
+	        console.log("Please use one of the commands listed below");
+	        console.log(" ")
 	        console.log("You tried to use: "+ command);
+	        console.log(" ")
 	        console.log("---AVAILABLE COMMANDS:------");
 	        console.log("my-tweets");
 	        console.log("spotify-this-song");
@@ -75,24 +75,6 @@ function getRandom(){
 
 };
 
-
-// writes to a txt file the successful commands executed 
-// function writeRecord(comm, req){
-
-// 	fs.appendFile("requestLog.txt", "INPUT-"+"C: "+comm+", R: "+req+".  ", function(err) {
-
-//   // If the code experiences any errors it will log the error to the console.
-//   if (err) {
-//     return console.log(err);
-//   }
-
-//   // Otherwise, it will print: "movies.txt was updated!"
-//   console.log("requestLog.txt was updated!");
-
-// });
-// }
-
-
 // gets latest tweets using index 1 as arg
 function getMyTweets(){
 
@@ -109,7 +91,7 @@ function getMyTweets(){
 
 	  if (!error) {
 	  	console.log("-----------MY TWEETS RESULTS--------------");
-	  	//console.log(tweets[0]);
+	  	
 	  	for(i=0; i< tweets.length; i++){
 	  		console.log(" ");
 		    console.log(tweets[i].user.name+ "- @"+ tweets[i].user.screen_name);
